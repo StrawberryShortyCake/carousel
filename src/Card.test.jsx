@@ -16,3 +16,13 @@ it("renders without crashing", function(){
         />);
 });
 
+it("matches snapshot", function(){
+
+  const {container} = render( <Card
+                              caption={TEST_IMAGES[0].caption}
+                              src={TEST_IMAGES[0].src}
+                              currNum={1}
+                              totalNum={TEST_IMAGES.length}
+                            />);
+  expect(container).toMatchSnapshot();
+});

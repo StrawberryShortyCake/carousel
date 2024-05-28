@@ -5,13 +5,11 @@ import { render, fireEvent } from "@testing-library/react";
 import Carousel from "./Carousel";
 import TEST_IMAGES from "./_testCommon.js";
 
+const CAROUSEL_TITLE = "A test title"
 
 it("renders without crashing", function () {
-  const carouselTitle = "A test title"
-  const carouselPhotos = TEST_IMAGES
-
   // expect it to render without issue
-  render(<Carousel photos={carouselPhotos} title={carouselTitle} />);
+  render(<Carousel photos={TEST_IMAGES} title={CAROUSEL_TITLE} />);
 });
 
 
@@ -142,4 +140,11 @@ it("right arrow missing on last image", function () {
   ).toBeInTheDocument();
 
   expect(rightArrow).toContainHTML("none");
+});
+
+
+it("matches snapshot", function () {
+  const { container } = render(
+        <Carousel photos={TEST_IMAGES} title={CAROUSEL_TITLE} />);
+  expect(container).toMatchSnapshot();
 });
